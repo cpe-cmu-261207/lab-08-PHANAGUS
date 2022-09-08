@@ -30,18 +30,18 @@ export default function Home() {
     setPixels(CanvasLib.createEmptyCanvas());
   };
 
-  const [intervalId, setIntervalId] = useState(null);
+  const [ids, setIds] = useState([]);
 
   const playDisco = () => {
     const id = setInterval(
       () => setPixels(CanvasLib.createRandomCanvas()),
       300
     );
-    setIntervalId(id);
+    setIds([...ids, id]);
   };
 
   const stopDisco = () => {
-    clearInterval(intervalId);
+    for (const id of ids) clearInterval(id);
   };
 
   return (
